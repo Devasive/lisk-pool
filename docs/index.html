@@ -42,21 +42,67 @@
                 </div>
             </div>
 
-            <table class="table table-striped table-hover table-bordered">
-                <thead>
-                    <tr>
-                        <th>Address</th>
-                        <th>Paid (LSK)</th>
-                        <th>Pending (LSK)</th>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="acc in (accounts|orderBy:'-received')">
-                        <td>{{acc.address}}</td>
-                        <td>{{acc.received|number:4}}</td>
-                        <td>{{acc.pending|number:4}}</td>
-                    </tr>
-                </tbody>
-            </table>
+		
+		<table ng-table="tableParams" class="table table-striped table-hover table-bordered ng-scope ng-table" show-filter="true"><!-- ngInclude: templates.header --><thead ng-include="templates.header" class="ng-scope"><!-- ngIf: params.hasGroup() --> <tr class="ng-table-sort-header"> <!-- ngRepeat: $column in $columns --><!-- ngIf: $column.show(this) --><th title="" ng-repeat="$column in $columns" ng-class="{
+                    'sortable': $column.sortable(this),
+                    'sort-asc': params.sorting()[$column.sortable(this)]=='asc',
+                    'sort-desc': params.sorting()[$column.sortable(this)]=='desc'
+                  }" ng-click="sortBy($column, $event)" ng-if="$column.show(this)" ng-init="template = $column.headerTemplateURL(this)" class="header  sortable"> <!-- ngIf: !template --><div ng-if="!template" class="ng-table-header ng-scope" ng-class="{'sort-indicator': params.settings().sortingIndicator == 'div'}"> <span ng-bind="$column.title(this)" ng-class="{'sort-indicator': params.settings().sortingIndicator == 'span'}" class="ng-binding sort-indicator">Address</span> </div><!-- end ngIf: !template --> <!-- ngIf: template --> </th><!-- end ngIf: $column.show(this) --><!-- end ngRepeat: $column in $columns --><!-- ngIf: $column.show(this) --><th title="" ng-repeat="$column in $columns" ng-class="{
+                    'sortable': $column.sortable(this),
+                    'sort-asc': params.sorting()[$column.sortable(this)]=='asc',
+                    'sort-desc': params.sorting()[$column.sortable(this)]=='desc'
+                  }" ng-click="sortBy($column, $event)" ng-if="$column.show(this)" ng-init="template = $column.headerTemplateURL(this)" class="header  sortable sort-desc"> <!-- ngIf: !template --><div ng-if="!template" class="ng-table-header ng-scope" ng-class="{'sort-indicator': params.settings().sortingIndicator == 'div'}"> <span ng-bind="$column.title(this)" ng-class="{'sort-indicator': params.settings().sortingIndicator == 'span'}" class="ng-binding sort-indicator">Paid (LSK)</span> </div><!-- end ngIf: !template --> <!-- ngIf: template --> </th><!-- end ngIf: $column.show(this) --><!-- end ngRepeat: $column in $columns --><!-- ngIf: $column.show(this) --><th title="" ng-repeat="$column in $columns" ng-class="{
+                    'sortable': $column.sortable(this),
+                    'sort-asc': params.sorting()[$column.sortable(this)]=='asc',
+                    'sort-desc': params.sorting()[$column.sortable(this)]=='desc'
+                  }" ng-click="sortBy($column, $event)" ng-if="$column.show(this)" ng-init="template = $column.headerTemplateURL(this)" class="header  sortable"> <!-- ngIf: !template --><div ng-if="!template" class="ng-table-header ng-scope" ng-class="{'sort-indicator': params.settings().sortingIndicator == 'div'}"> <span ng-bind="$column.title(this)" ng-class="{'sort-indicator': params.settings().sortingIndicator == 'span'}" class="ng-binding sort-indicator">Pending (LSK)</span> </div><!-- end ngIf: !template --> <!-- ngIf: template --> </th><!-- end ngIf: $column.show(this) --><!-- end ngRepeat: $column in $columns --> </tr> <tr ng-show="show_filter" class="ng-table-filters"> <!-- ngRepeat: $column in $columns --><!-- ngIf: $column.show(this) --><th data-title-text="Address" ng-repeat="$column in $columns" ng-if="$column.show(this)" class="filter " ng-class="params.settings().filterOptions.filterLayout === 'horizontal' ? 'filter-horizontal' : ''"> <!-- ngRepeat: (name, filter) in $column.filter(this) --><!-- ngInclude: config.getTemplateUrl(filter) --><div ng-repeat="(name, filter) in $column.filter(this)" ng-include="config.getTemplateUrl(filter)" class="filter-cell ng-scope s12 last" ng-class="[getFilterCellCss($column.filter(this), params.settings().filterOptions.filterLayout), $last ? 'last' : '']"><input type="text" name="address" ng-disabled="$filterRow.disabled" ng-model="params.filter()[name]" class="input-filter form-control ng-pristine ng-untouched ng-valid ng-scope" placeholder=""> </div><!-- end ngRepeat: (name, filter) in $column.filter(this) --> </th><!-- end ngIf: $column.show(this) --><!-- end ngRepeat: $column in $columns --><!-- ngIf: $column.show(this) --><th data-title-text="Paid (LSK)" ng-repeat="$column in $columns" ng-if="$column.show(this)" class="filter " ng-class="params.settings().filterOptions.filterLayout === 'horizontal' ? 'filter-horizontal' : ''"> <!-- ngRepeat: (name, filter) in $column.filter(this) --><!-- ngInclude: config.getTemplateUrl(filter) --><div ng-repeat="(name, filter) in $column.filter(this)" ng-include="config.getTemplateUrl(filter)" class="filter-cell ng-scope s12 last" ng-class="[getFilterCellCss($column.filter(this), params.settings().filterOptions.filterLayout), $last ? 'last' : '']"><input type="number" name="received" ng-disabled="$filterRow.disabled" ng-model="params.filter()[name]" class="input-filter form-control ng-pristine ng-untouched ng-valid ng-scope" placeholder=""> </div><!-- end ngRepeat: (name, filter) in $column.filter(this) --> </th><!-- end ngIf: $column.show(this) --><!-- end ngRepeat: $column in $columns --><!-- ngIf: $column.show(this) --><th data-title-text="Pending (LSK)" ng-repeat="$column in $columns" ng-if="$column.show(this)" class="filter " ng-class="params.settings().filterOptions.filterLayout === 'horizontal' ? 'filter-horizontal' : ''"> <!-- ngRepeat: (name, filter) in $column.filter(this) --><!-- ngInclude: config.getTemplateUrl(filter) --><div ng-repeat="(name, filter) in $column.filter(this)" ng-include="config.getTemplateUrl(filter)" class="filter-cell ng-scope s12 last" ng-class="[getFilterCellCss($column.filter(this), params.settings().filterOptions.filterLayout), $last ? 'last' : '']"><input type="number" name="pending" ng-disabled="$filterRow.disabled" ng-model="params.filter()[name]" class="input-filter form-control ng-pristine ng-untouched ng-valid ng-scope" placeholder=""> </div><!-- end ngRepeat: (name, filter) in $column.filter(this) --> </th><!-- end ngIf: $column.show(this) --><!-- end ngRepeat: $column in $columns --> </tr> </thead>
+                    <tbody><!-- ngRepeat: acc in $data --><tr ng-repeat="acc in $data" class="ng-scope">
+                        <td title="'Address'" filter="{address: 'text'}" sortable="'address'" data-title-text="Address" class="ng-binding">9094944264474023843L</td>
+                        <td title="'Paid (LSK)'" filter="{received: 'number'}" sortable="'received'" data-title-text="Paid (LSK)" class="ng-binding">1,598.4748</td>
+                        <td title="'Pending (LSK)'" filter="{pending: 'number'}" sortable="'pending'" data-title-text="Pending (LSK)" class="ng-binding">0.0000</td>
+                    </tr><!-- end ngRepeat: acc in $data --><tr ng-repeat="acc in $data" class="ng-scope">
+                        <td title="'Address'" filter="{address: 'text'}" sortable="'address'" data-title-text="Address" class="ng-binding">11109550240690377362L</td>
+                        <td title="'Paid (LSK)'" filter="{received: 'number'}" sortable="'received'" data-title-text="Paid (LSK)" class="ng-binding">588.2820</td>
+                        <td title="'Pending (LSK)'" filter="{pending: 'number'}" sortable="'pending'" data-title-text="Pending (LSK)" class="ng-binding">0.0000</td>
+                    </tr><!-- end ngRepeat: acc in $data --><tr ng-repeat="acc in $data" class="ng-scope">
+                        <td title="'Address'" filter="{address: 'text'}" sortable="'address'" data-title-text="Address" class="ng-binding">3594078817361902980L</td>
+                        <td title="'Paid (LSK)'" filter="{received: 'number'}" sortable="'received'" data-title-text="Paid (LSK)" class="ng-binding">539.9425</td>
+                        <td title="'Pending (LSK)'" filter="{pending: 'number'}" sortable="'pending'" data-title-text="Pending (LSK)" class="ng-binding">0.0000</td>
+                    </tr><!-- end ngRepeat: acc in $data --><tr ng-repeat="acc in $data" class="ng-scope">
+                        <td title="'Address'" filter="{address: 'text'}" sortable="'address'" data-title-text="Address" class="ng-binding">1272400238430118023L</td>
+                        <td title="'Paid (LSK)'" filter="{received: 'number'}" sortable="'received'" data-title-text="Paid (LSK)" class="ng-binding">458.0095</td>
+                        <td title="'Pending (LSK)'" filter="{pending: 'number'}" sortable="'pending'" data-title-text="Pending (LSK)" class="ng-binding">0.0000</td>
+                    </tr><!-- end ngRepeat: acc in $data --><tr ng-repeat="acc in $data" class="ng-scope">
+                        <td title="'Address'" filter="{address: 'text'}" sortable="'address'" data-title-text="Address" class="ng-binding">13388686418377370974L</td>
+                        <td title="'Paid (LSK)'" filter="{received: 'number'}" sortable="'received'" data-title-text="Paid (LSK)" class="ng-binding">418.4798</td>
+                        <td title="'Pending (LSK)'" filter="{pending: 'number'}" sortable="'pending'" data-title-text="Pending (LSK)" class="ng-binding">0.0000</td>
+                    </tr><!-- end ngRepeat: acc in $data --><tr ng-repeat="acc in $data" class="ng-scope">
+                        <td title="'Address'" filter="{address: 'text'}" sortable="'address'" data-title-text="Address" class="ng-binding">6526584438471529703L</td>
+                        <td title="'Paid (LSK)'" filter="{received: 'number'}" sortable="'received'" data-title-text="Paid (LSK)" class="ng-binding">398.9268</td>
+                        <td title="'Pending (LSK)'" filter="{pending: 'number'}" sortable="'pending'" data-title-text="Pending (LSK)" class="ng-binding">0.0000</td>
+                    </tr><!-- end ngRepeat: acc in $data --><tr ng-repeat="acc in $data" class="ng-scope">
+                        <td title="'Address'" filter="{address: 'text'}" sortable="'address'" data-title-text="Address" class="ng-binding">2890552557949034257L</td>
+                        <td title="'Paid (LSK)'" filter="{received: 'number'}" sortable="'received'" data-title-text="Paid (LSK)" class="ng-binding">394.3002</td>
+                        <td title="'Pending (LSK)'" filter="{pending: 'number'}" sortable="'pending'" data-title-text="Pending (LSK)" class="ng-binding">0.0000</td>
+                    </tr><!-- end ngRepeat: acc in $data --><tr ng-repeat="acc in $data" class="ng-scope">
+                        <td title="'Address'" filter="{address: 'text'}" sortable="'address'" data-title-text="Address" class="ng-binding">16215708213679211411L</td>
+                        <td title="'Paid (LSK)'" filter="{received: 'number'}" sortable="'received'" data-title-text="Paid (LSK)" class="ng-binding">369.2267</td>
+                        <td title="'Pending (LSK)'" filter="{pending: 'number'}" sortable="'pending'" data-title-text="Pending (LSK)" class="ng-binding">0.0000</td>
+                    </tr><!-- end ngRepeat: acc in $data --><tr ng-repeat="acc in $data" class="ng-scope">
+                        <td title="'Address'" filter="{address: 'text'}" sortable="'address'" data-title-text="Address" class="ng-binding">15011714843719308396L</td>
+                        <td title="'Paid (LSK)'" filter="{received: 'number'}" sortable="'received'" data-title-text="Paid (LSK)" class="ng-binding">334.2080</td>
+                        <td title="'Pending (LSK)'" filter="{pending: 'number'}" sortable="'pending'" data-title-text="Pending (LSK)" class="ng-binding">0.0000</td>
+                    </tr><!-- end ngRepeat: acc in $data --><tr ng-repeat="acc in $data" class="ng-scope">
+                        <td title="'Address'" filter="{address: 'text'}" sortable="'address'" data-title-text="Address" class="ng-binding">9238360469909688873L</td>
+                        <td title="'Paid (LSK)'" filter="{received: 'number'}" sortable="'received'" data-title-text="Paid (LSK)" class="ng-binding">301.2919</td>
+                        <td title="'Pending (LSK)'" filter="{pending: 'number'}" sortable="'pending'" data-title-text="Pending (LSK)" class="ng-binding">0.0000</td>
+                    </tr><!-- end ngRepeat: acc in $data -->
+
+            </tbody></table>
+		
+		
+		
+
             
             <hr>
             <div align="center">
