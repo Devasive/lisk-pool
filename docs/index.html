@@ -8,24 +8,31 @@
     </head>
     <body ng-app="delegateApp" ng-controller="indexCtrl">
         <div class="container">
+	    <hr>
+	    <div align="center">
+		<img class="img-responsive" src="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9Ii0zMCAwIDE1NS40MiAxMzYuMjkiPjxkZWZzPjxzdHlsZT4uY2xzLTF7ZmlsbDojNzQ4NjlCO308L3N0eWxlPjwvZGVmcz48dGl0bGU+TGlzayBMb2dvIC0gQ3J5c3RhbDwvdGl0bGU+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNNDUuMDgsMTM2LjEybDE3LjgtMjBhLjUuNSwwLDAsMC0uMzgtLjg0SDQyLjk0YS41LjUsMCwwLDEtLjM4LS4xN0wyNS45NCw5Ni40N2EuNTEuNTEsMCwwLDEtLjA2LS41OUw1My42NCw0OC4yMmEuNTIuNTIsMCwwLDAsMC0uNTFMNDIuMDcsMjcuODVhLjUxLjUxLDAsMCwwLS44NywwTC4wNyw5OC40N2EuNS41LDAsMCwwLC4wNi41OWwzMywzNy4wNmEuNTIuNTIsMCwwLDAsLjM4LjE3SDQ0LjdBLjQ5LjQ5LDAsMCwwLDQ1LjA4LDEzNi4xMloiLz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik01Ny4yNy4yNSw0NS43MSwyMC4xMWEuNDcuNDcsMCwwLDAsMCwuNTFsMTIsMjAuNjFoMEw4OS41NCw5NS44N2EuNTMuNTMsMCwwLDEtLjA2LjU5TDcyLjcxLDExNS4yOWgwTDU0Ljc2LDEzNS40NWEuNS41LDAsMCwwLC4zNy44NEg4MS45YS40OC40OCwwLDAsMCwuMzctLjE3bDMzLTM3LjA2YS41LjUsMCwwLDAsLjA2LS41OUw1OC4xNC4yNUEuNTEuNTEsMCwwLDAsNTcuMjcuMjVaIi8+PC9zdmc+Cg==" width="150" height="150/">
+            </div>
             <h1>Devasive Delegate Pool (<a href="https://explorer.lisk.io/address/17438085793668748066L" target="_blank">Explorer</a></h1>
-            <div class="alert alert-info" role="alert">60% reward sharing pool! Be sure to vote for delegate Devasive to receive weekly payouts.</div>
+            <div class="alert alert-info" role="alert">50% reward sharing pool! Be sure to vote for delegate Devasive to receive weekly payouts.</div>
 
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="alert alert-success" role="alert">Last payout: {{lastpayout|date}}</div>
                 </div>
-                <div class="col-md-8">
-                    <div class="alert alert-success" role="alert">Next payout will be at: {{nextpayout|date}}</div>
+                <div class="col-md-6">
+                    <div class="alert alert-warning" role="alert">Next payout will be at: {{nextpayout|date}}</div>
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="alert alert-success" role="alert">Total paid: {{total.paid|number:8}} LSK</div>
                 </div>
-                <div class="col-md-6">
-                    <div class="alert alert-danger" role="alert">Total pending: {{total.pending|number:8}} LSK</div>
+		<div class="col-md-4">
+                    <div class="alert alert-danger" role="alert">Minimum payout: 1 LSK</div>
+                </div>
+                <div class="col-md-4">
+                    <div class="alert alert-warning" role="alert">Total pending: {{total.pending|number:8}} LSK</div>
                 </div>
             </div>
 
